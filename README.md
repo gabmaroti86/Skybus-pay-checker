@@ -1,17 +1,6 @@
-# SkyBus Pay Checker
+# SkyBus Pay Checker v2
 
-A mobile-friendly web app for entering shifts and estimating weekly gross pay.
+Adds Service Grant, 2026–27 Australian resident tax estimate, Medicare levy,
+salary sacrifice, pre-tax deductions and estimated take-home pay.
 
-## Default calculation settings
-- Base rate: $36.60 per hour
-- Saturday: 2x
-- Sunday: 2x
-- Weekday overtime after 38 hours: 1.5x
-
-All rates can be changed inside the app.
-
-## Publish with GitHub Pages
-1. Upload all files to the root of this repository.
-2. Open **Settings** → **Pages**.
-3. Under **Build and deployment**, select **Deploy from a branch**.
-4. Select **main** and **/(root)**, then press **Save**.
+Upload these files over the existing repository files. GitHub Pages redeploys automatically.

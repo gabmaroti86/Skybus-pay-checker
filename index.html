@@ -1,197 +1,53 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#d71920">
-  <title>SkyBus Pay Checker</title>
-  <link rel="manifest" href="manifest.json">
-  <style>
-    :root{
-      --red:#d71920;--red2:#a90f15;--bg:#0f1115;--panel:#191d24;--line:#2a303a;
-      --text:#f3f5f7;--muted:#9ca7b4;--green:#36d17c;--amber:#ffbd2e;--danger:#ff625d;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,#11141a,#0d0f13);color:var(--text);
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-    header{position:sticky;top:0;z-index:5;background:rgba(15,17,21,.96);backdrop-filter:blur(8px);
-      border-bottom:1px solid var(--line);padding:16px}
-    .brand{max-width:760px;margin:auto;display:flex;align-items:center;gap:12px}
-    .logo{width:44px;height:44px;border-radius:12px;background:var(--red);display:grid;place-items:center;
-      font-weight:900;font-size:22px}
-    h1{font-size:21px;margin:0}.sub{font-size:12px;color:var(--muted);margin-top:2px}
-    main{max-width:760px;margin:auto;padding:16px 16px 80px}
-    .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px;
-      box-shadow:0 10px 30px rgba(0,0,0,.18)}
-    h2{font-size:17px;margin:0 0 14px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-    label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
-    input,select,button{width:100%;border-radius:11px;border:1px solid var(--line);font:inherit}
-    input,select{background:#11151b;color:var(--text);padding:12px}
-    button{padding:12px;font-weight:750;cursor:pointer}
-    .primary{background:var(--red);color:white;border-color:var(--red)}
-    .secondary{background:#222833;color:white}.danger{background:#321719;color:#ffb0ad;border-color:#5b2427}
-    .shift{border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:12px;background:#14181e}
-    .shift-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
-    .shift-title{font-weight:800}.remove{width:auto;padding:7px 10px;background:transparent;color:var(--danger)}
-    .summary{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-    .metric{background:#12161c;border:1px solid var(--line);border-radius:13px;padding:12px}
-    .metric b{display:block;font-size:21px;margin-top:4px}.green{color:var(--green)}.amber{color:var(--amber)}
-    .breakdown{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}
-    .breakdown td{padding:9px 4px;border-bottom:1px solid var(--line)}
-    .breakdown td:last-child{text-align:right;font-weight:700}
-    .note{font-size:12px;line-height:1.45;color:var(--muted);margin-top:12px}
-    .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-    @media(max-width:560px){.grid,.grid3{grid-template-columns:1fr}.summary{grid-template-columns:1fr 1fr}}
-  </style>
-</head>
-<body>
-<header>
-  <div class="brand">
-    <div class="logo">SB</div>
-    <div><h1>SkyBus Pay Checker</h1><div class="sub">Shift and gross-pay estimator</div></div>
-  </div>
-</header>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#d71920"><title>SkyBus Pay Checker</title>
+<style>
+:root{--r:#d71920;--bg:#0f1115;--p:#191d24;--l:#2a303a;--t:#f3f5f7;--m:#9ca7b4;--g:#36d17c;--a:#ffbd2e}*{box-sizing:border-box}body{margin:0;background:#0f1115;color:var(--t);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}header{position:sticky;top:0;background:#11151b;border-bottom:1px solid var(--l);padding:16px;z-index:2}main,.head{max-width:780px;margin:auto}.head{display:flex;gap:12px;align-items:center}.logo{background:var(--r);width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-weight:900}h1{font-size:21px;margin:0}.sub,label,.note{color:var(--m);font-size:12px}main{padding:16px 16px 70px}.card{background:var(--p);border:1px solid var(--l);border-radius:16px;padding:16px;margin-bottom:14px}h2{font-size:17px;margin:0 0 14px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}label{display:block;margin-bottom:6px}input,select,button{width:100%;border:1px solid var(--l);border-radius:11px;font:inherit}input,select{background:#11151b;color:var(--t);padding:12px}button{padding:12px;font-weight:750}.primary{background:var(--r);color:#fff}.secondary{background:#222833;color:#fff}.danger{background:#321719;color:#ffb0ad}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.shift{background:#14181e;border:1px solid var(--l);border-radius:14px;padding:12px;margin-top:12px}.remove{width:auto;background:transparent;color:#ff625d;padding:7px 10px}.summary{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{background:#12161c;border:1px solid var(--l);border-radius:13px;padding:12px}.metric b{display:block;font-size:21px}.green{color:var(--g)}.amber{color:var(--a)}table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}td{padding:9px 4px;border-bottom:1px solid var(--l)}td:last-child{text-align:right;font-weight:700}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.note{line-height:1.45}@media(max-width:560px){.grid,.grid3{grid-template-columns:1fr}.summary{grid-template-columns:1fr 1fr}}
+</style></head><body>
+<header><div class="head"><div class="logo">SB</div><div><h1>SkyBus Pay Checker</h1><div class="sub">Shift, service grant, tax and take-home estimator</div></div></div></header>
 <main>
-  <section class="card">
-    <h2>Pay settings</h2>
-    <div class="grid">
-      <div><label>Base hourly rate ($)</label><input id="baseRate" type="number" step="0.01" value="36.60"></div>
-      <div><label>Weekly overtime starts after</label><input id="otThreshold" type="number" step="0.1" value="38"></div>
-      <div><label>Weekday overtime multiplier</label><input id="otMultiplier" type="number" step="0.1" value="1.5"></div>
-      <div><label>Weekend multiplier</label><input id="weekendMultiplier" type="number" step="0.1" value="2"></div>
-    </div>
-  </section>
+<section class="card"><h2>Pay settings</h2><div class="grid">
+<div><label>Base hourly rate ($)</label><input id="baseRate" type="number" step=".01" value="36.60"></div>
+<div><label>Weekday overtime after</label><input id="otThreshold" type="number" step=".1" value="38"></div>
+<div><label>Weekday overtime multiplier</label><input id="otMultiplier" type="number" step=".1" value="1.5"></div>
+<div><label>Weekend multiplier</label><input id="weekendMultiplier" type="number" step=".1" value="2"></div>
+<div><label>Years of continuous service</label><select id="serviceYears"><option value="0">Less than 2 years</option><option value="2">2 years</option><option value="3">3 years</option><option value="4">4 years or more</option></select></div>
+<div><label>Employment fraction</label><select id="employmentFraction"><option value="1">Full time</option><option value=".8">Part time – 80%</option><option value=".6">Part time – 60%</option><option value=".5">Part time – 50%</option></select></div>
+</div></section>
 
-  <section class="card">
-    <div class="shift-head"><h2 style="margin:0">Your shifts</h2><button class="primary" style="width:auto" id="addShift">+ Add shift</button></div>
-    <div id="shiftList"></div>
-  </section>
+<section class="card"><h2>Tax settings</h2><div class="grid">
+<div><label>Salary sacrifice per week ($)</label><input id="salarySacrifice" type="number" min="0" value="100"></div>
+<div><label>Other pre-tax deductions ($)</label><input id="otherPretax" type="number" min="0" value="0"></div>
+<div><label>Medicare levy</label><select id="medicare"><option value=".02">Include 2% estimate</option><option value="0">Do not include</option></select></div>
+<div><label>Tax year</label><select id="taxYear"><option>2026–27 Australian resident</option></select></div>
+</div><p class="note">Tax is an annualised estimate. Actual PAYG can differ due to ATO rounding, tax offsets, HELP debt, Medicare exemptions or surcharge, other income and payroll adjustments.</p></section>
 
-  <section class="card">
-    <h2>Estimated weekly pay</h2>
-    <div class="summary">
-      <div class="metric"><label>Total paid hours</label><b id="totalHours">0.00</b></div>
-      <div class="metric"><label>Estimated gross</label><b class="green" id="grossPay">$0.00</b></div>
-      <div class="metric"><label>Ordinary weekday hours</label><b id="ordinaryHours">0.00</b></div>
-      <div class="metric"><label>Penalty / overtime hours</label><b class="amber" id="penaltyHours">0.00</b></div>
-    </div>
-    <table class="breakdown">
-      <tr><td>Weekday ordinary</td><td id="ordinaryPay">$0.00</td></tr>
-      <tr><td>Weekday overtime</td><td id="overtimePay">$0.00</td></tr>
-      <tr><td>Saturday</td><td id="saturdayPay">$0.00</td></tr>
-      <tr><td>Sunday</td><td id="sundayPay">$0.00</td></tr>
-      <tr><td>Allowances entered</td><td id="allowancePay">$0.00</td></tr>
-    </table>
-    <div class="actions">
-      <button class="secondary" id="saveBtn">Save on phone</button>
-      <button class="danger" id="clearBtn">Clear week</button>
-    </div>
-    <p class="note">Estimate only. The default settings use a $36.60 base rate, double time for Saturday and Sunday, and 1.5× weekday overtime after 38 hours. You can change every rate above. Weekend hours are not counted again as weekday overtime.</p>
-  </section>
+<section class="card"><div class="row"><h2 style="margin:0">Your shifts</h2><button class="primary" style="width:auto" id="addShift">+ Add shift</button></div><div id="shiftList"></div></section>
+
+<section class="card"><h2>Weekly estimate</h2><div class="summary">
+<div class="metric"><label>Total paid hours</label><b id="totalHours">0.00</b></div>
+<div class="metric"><label>Gross pay</label><b id="grossPay">$0.00</b></div>
+<div class="metric"><label>Estimated tax</label><b class="amber" id="taxPay">$0.00</b></div>
+<div class="metric"><label>Estimated take-home</label><b class="green" id="netPay">$0.00</b></div></div>
+<table>
+<tr><td>Weekday ordinary</td><td id="ordinaryPay">$0.00</td></tr><tr><td>Weekday overtime</td><td id="overtimePay">$0.00</td></tr><tr><td>Saturday</td><td id="saturdayPay">$0.00</td></tr><tr><td>Sunday</td><td id="sundayPay">$0.00</td></tr><tr><td>Allowances entered</td><td id="allowancePay">$0.00</td></tr><tr><td>Service Grant</td><td id="serviceGrantPay">$0.00</td></tr><tr><td>Salary sacrifice</td><td id="sacrificePay">-$0.00</td></tr><tr><td>Other pre-tax deductions</td><td id="otherPretaxPay">-$0.00</td></tr><tr><td>Taxable weekly income</td><td id="taxablePay">$0.00</td></tr><tr><td>Income tax estimate</td><td id="incomeTaxPay">-$0.00</td></tr><tr><td>Medicare levy estimate</td><td id="medicarePay">-$0.00</td></tr>
+</table><div class="actions"><button class="secondary" id="saveBtn">Save on phone</button><button class="danger" id="clearBtn">Clear week</button></div>
+<p class="note">Service Grant: $5.84 after 2 years, $8.47 after 3 years and $11.46 after 4 years. The agreement caps the grant at $11.46 during its life. Part-time grants are pro-rated.</p></section>
 </main>
-
 <script>
-const days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-const $=id=>document.getElementById(id);
-let shifts=[];
-
-function newShift(data={}){
-  shifts.push({
-    id:crypto.randomUUID ? crypto.randomUUID() : String(Date.now()+Math.random()),
-    day:data.day ?? 1,
-    start:data.start ?? "05:00",
-    end:data.end ?? "13:00",
-    unpaidBreak:Number(data.unpaidBreak ?? 0),
-    allowance:Number(data.allowance ?? 0),
-    note:data.note ?? ""
-  });
-  render();
-}
-function hoursBetween(start,end,breakMinutes){
-  if(!start||!end)return 0;
-  const [sh,sm]=start.split(":").map(Number),[eh,em]=end.split(":").map(Number);
-  let mins=(eh*60+em)-(sh*60+sm);
-  if(mins<0)mins+=1440;
-  return Math.max(0,(mins-Number(breakMinutes||0))/60);
-}
-function updateShift(id,key,value){
-  const s=shifts.find(x=>x.id===id); if(!s)return;
-  s[key]=["day","unpaidBreak","allowance"].includes(key)?Number(value):value;
-  calculate(); save(false);
-}
-function render(){
-  $("shiftList").innerHTML="";
-  shifts.forEach((s,i)=>{
-    const div=document.createElement("div"); div.className="shift";
-    div.innerHTML=`
-      <div class="shift-head"><span class="shift-title">Shift ${i+1}</span>
-      <button class="remove" data-remove="${s.id}">Remove</button></div>
-      <div class="grid3">
-        <div><label>Day</label><select data-id="${s.id}" data-key="day">${days.map((d,n)=>`<option value="${n}" ${n===s.day?"selected":""}>${d}</option>`).join("")}</select></div>
-        <div><label>Start time</label><input data-id="${s.id}" data-key="start" type="time" value="${s.start}"></div>
-        <div><label>Finish time</label><input data-id="${s.id}" data-key="end" type="time" value="${s.end}"></div>
-        <div><label>Unpaid break (minutes)</label><input data-id="${s.id}" data-key="unpaidBreak" type="number" min="0" step="5" value="${s.unpaidBreak}"></div>
-        <div><label>Allowance ($)</label><input data-id="${s.id}" data-key="allowance" type="number" min="0" step="0.01" value="${s.allowance}"></div>
-        <div><label>Note</label><input data-id="${s.id}" data-key="note" value="${s.note}" placeholder="Optional"></div>
-      </div>`;
-    $("shiftList").appendChild(div);
-  });
-  document.querySelectorAll("[data-id]").forEach(el=>el.addEventListener("input",e=>updateShift(e.target.dataset.id,e.target.dataset.key,e.target.value)));
-  document.querySelectorAll("[data-remove]").forEach(el=>el.addEventListener("click",e=>{shifts=shifts.filter(s=>s.id!==e.target.dataset.remove);render();save(false)}));
-  calculate();
-}
+const days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],$=x=>document.getElementById(x);let shifts=[];
+function uid(){return crypto.randomUUID?crypto.randomUUID():Date.now()+Math.random()+""}
+function add(d={}){shifts.push({id:uid(),day:d.day??1,start:d.start??"05:00",end:d.end??"13:00",unpaidBreak:+(d.unpaidBreak??0),allowance:+(d.allowance??0),note:d.note??""});render()}
+function hours(a,b,br){if(!a||!b)return 0;let A=a.split(":").map(Number),B=b.split(":").map(Number),m=(B[0]*60+B[1])-(A[0]*60+A[1]);if(m<0)m+=1440;return Math.max(0,(m-(+br||0))/60)}
+function update(id,k,v){let s=shifts.find(x=>x.id===id);if(!s)return;s[k]=["day","unpaidBreak","allowance"].includes(k)?+v:v;calc();save(false)}
+function render(){$("shiftList").innerHTML="";shifts.forEach((s,i)=>{let d=document.createElement("div");d.className="shift";d.innerHTML=`<div class="row"><b>Shift ${i+1}</b><button class="remove" data-remove="${s.id}">Remove</button></div><div class="grid3"><div><label>Day</label><select data-id="${s.id}" data-key="day">${days.map((x,n)=>`<option value="${n}" ${n===s.day?"selected":""}>${x}</option>`).join("")}</select></div><div><label>Start</label><input data-id="${s.id}" data-key="start" type="time" value="${s.start}"></div><div><label>Finish</label><input data-id="${s.id}" data-key="end" type="time" value="${s.end}"></div><div><label>Unpaid break (minutes)</label><input data-id="${s.id}" data-key="unpaidBreak" type="number" min="0" step="5" value="${s.unpaidBreak}"></div><div><label>Allowance ($)</label><input data-id="${s.id}" data-key="allowance" type="number" min="0" step=".01" value="${s.allowance}"></div><div><label>Note</label><input data-id="${s.id}" data-key="note" value="${s.note}"></div></div>`;$("shiftList").appendChild(d)});
+document.querySelectorAll("[data-id]").forEach(e=>e.oninput=x=>update(x.target.dataset.id,x.target.dataset.key,x.target.value));document.querySelectorAll("[data-remove]").forEach(e=>e.onclick=x=>{shifts=shifts.filter(s=>s.id!==x.target.dataset.remove);render();save(false)});calc()}
 function money(n){return new Intl.NumberFormat("en-AU",{style:"currency",currency:"AUD"}).format(n||0)}
-function calculate(){
-  const rate=Number($("baseRate").value)||0;
-  const threshold=Number($("otThreshold").value)||38;
-  const otMult=Number($("otMultiplier").value)||1.5;
-  const wkndMult=Number($("weekendMultiplier").value)||2;
-  let weekdayHours=0,satHours=0,sunHours=0,allowances=0,total=0;
-  shifts.forEach(s=>{
-    const h=hoursBetween(s.start,s.end,s.unpaidBreak); total+=h; allowances+=Number(s.allowance)||0;
-    if(s.day===6)satHours+=h; else if(s.day===0)sunHours+=h; else weekdayHours+=h;
-  });
-  const ordinary=Math.min(weekdayHours,threshold);
-  const overtime=Math.max(0,weekdayHours-threshold);
-  const ordinaryPay=ordinary*rate, overtimePay=overtime*rate*otMult;
-  const saturdayPay=satHours*rate*wkndMult, sundayPay=sunHours*rate*wkndMult;
-  const gross=ordinaryPay+overtimePay+saturdayPay+sundayPay+allowances;
-  $("totalHours").textContent=total.toFixed(2);
-  $("grossPay").textContent=money(gross);
-  $("ordinaryHours").textContent=ordinary.toFixed(2);
-  $("penaltyHours").textContent=(overtime+satHours+sunHours).toFixed(2);
-  $("ordinaryPay").textContent=money(ordinaryPay);
-  $("overtimePay").textContent=money(overtimePay);
-  $("saturdayPay").textContent=money(saturdayPay);
-  $("sundayPay").textContent=money(sundayPay);
-  $("allowancePay").textContent=money(allowances);
-}
-function save(show=true){
-  const payload={shifts,settings:{
-    baseRate:$("baseRate").value,otThreshold:$("otThreshold").value,
-    otMultiplier:$("otMultiplier").value,weekendMultiplier:$("weekendMultiplier").value
-  }};
-  localStorage.setItem("skybusPayChecker",JSON.stringify(payload));
-  if(show)alert("Saved on this phone.");
-}
-function load(){
-  try{
-    const p=JSON.parse(localStorage.getItem("skybusPayChecker"));
-    if(p){
-      shifts=p.shifts||[];
-      Object.entries(p.settings||{}).forEach(([k,v])=>{if($(k))$(k).value=v});
-    }
-  }catch(e){}
-  if(!shifts.length)newShift(); else render();
-}
-["baseRate","otThreshold","otMultiplier","weekendMultiplier"].forEach(id=>$(id).addEventListener("input",()=>{calculate();save(false)}));
-$("addShift").addEventListener("click",()=>newShift());
-$("saveBtn").addEventListener("click",()=>save(true));
-$("clearBtn").addEventListener("click",()=>{if(confirm("Clear all shifts for this week?")){shifts=[];newShift();save(false)}});
-if("serviceWorker" in navigator) navigator.serviceWorker.register("service-worker.js").catch(()=>{});
-load();
-</script>
-</body>
-</html>
+function taxAnnual(x){x=Math.max(0,x);if(x<=18200)return 0;if(x<=45000)return(x-18200)*.15;if(x<=135000)return4020+(x-45000)*.30;if(x<=190000)return31020+(x-135000)*.37;return51370+(x-190000)*.45}
+function grant(){let y=+$("serviceYears").value,f=+$("employmentFraction").value,g=y>=4?11.46:y>=3?8.47:y>=2?5.84:0;return g*f}
+function calc(){let r=+$("baseRate").value||0,t=+$("otThreshold").value||38,om=+$("otMultiplier").value||1.5,wm=+$("weekendMultiplier").value||2,wh=0,sa=0,su=0,al=0,total=0;shifts.forEach(s=>{let h=hours(s.start,s.end,s.unpaidBreak);total+=h;al+=+s.allowance||0;if(s.day===6)sa+=h;else if(s.day===0)su+=h;else wh+=h});let ord=Math.min(wh,t),ot=Math.max(0,wh-t),op=ord*r,otp=ot*r*om,sap=sa*r*wm,sup=su*r*wm,sg=grant(),gross=op+otp+sap+sup+al+sg,ss=Math.max(0,+$("salarySacrifice").value||0),pre=Math.max(0,+$("otherPretax").value||0),taxable=Math.max(0,gross-ss-pre),annual=taxable*52,it=taxAnnual(annual)/52,med=annual*(+$("medicare").value||0)/52,tax=it+med,net=Math.max(0,gross-ss-pre-tax);
+let vals={totalHours:total.toFixed(2),grossPay:money(gross),taxPay:money(tax),netPay:money(net),ordinaryPay:money(op),overtimePay:money(otp),saturdayPay:money(sap),sundayPay:money(sup),allowancePay:money(al),serviceGrantPay:money(sg),sacrificePay:"-"+money(ss),otherPretaxPay:"-"+money(pre),taxablePay:money(taxable),incomeTaxPay:"-"+money(it),medicarePay:"-"+money(med)};Object.entries(vals).forEach(([k,v])=>$(k).textContent=v)}
+const ids=["baseRate","otThreshold","otMultiplier","weekendMultiplier","serviceYears","employmentFraction","salarySacrifice","otherPretax","medicare"];
+function save(pop=true){let settings={};ids.forEach(id=>settings[id]=$(id).value);localStorage.setItem("skybusV2",JSON.stringify({shifts,settings}));if(pop)alert("Saved on this phone.")}
+function load(){try{let p=JSON.parse(localStorage.getItem("skybusV2"));if(p){shifts=p.shifts||[];Object.entries(p.settings||{}).forEach(([k,v])=>{if($(k))$(k).value=v})}}catch(e){}if(!shifts.length)add();else render()}
+ids.forEach(id=>$(id).oninput=()=>{calc();save(false)});$("addShift").onclick=()=>add();$("saveBtn").onclick=()=>save();$("clearBtn").onclick=()=>{if(confirm("Clear all shifts?")){shifts=[];add();save(false)}};load();
+</script></body></html>
